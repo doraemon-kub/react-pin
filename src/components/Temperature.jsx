@@ -25,6 +25,7 @@ function Temperature({ name }) {
         setCelsius(c);
         setFahrenheit((c * 1.8 + 32));
     };
+    
 
     return (
         <div
