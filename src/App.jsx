@@ -1,33 +1,25 @@
 // import RedixCounter from "./components/RedixCounter";
 
-import "./App.css";
-import Temperature from "./components/Temperature";
-import Timer from "./components/Timer";
-import Value from "./components/Value";
-import Adder from "./components/Adder";
-
-import { useState } from "react";
+import { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import Components from "./pages/Components";
+import Calculater from "./pages/Calculater";
+import ForwardToHome from "./pages/ForwardToHome";
+import AppLayouts from "./layouts/AppLayout";
 
 function App() {
-
-  const [counter, setCounter] = useState(0);
-
   return (
     <div>
-      {/* <RedixCounter /> */}
-
-      <Value name={'COUNTER'} value={counter} setValue={setCounter} />
-
-      <Timer name={'TIMER'} />
-
-      <Adder name={'ADD'} />
-
-      <Temperature name={'TEMPERATURES'} />
-
-      
-
-
-      <h1 className="text-center mt-3">67156801 นายณัฐวุฒิ สังข์ประเสริฐ</h1>
+      <BrowserRouter basename="/redix-counter/">
+        <Route>
+          <Route element={<AppLayouts/>}>
+            <Route path="components" element={<Components />} />
+            <Route path="animation" element={<Animation />} />
+            <Route path="calculater" element={<Calculater />} />
+            <Route path="*" element={<ForwardToHome />} />
+          </Route>
+        </Route>
+      </BrowserRouter>
     </div>
   );
 }
