@@ -1,23 +1,25 @@
-import { Button } from "bootstrap";
+import { Button } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 
 const AppNavbar = () => {
   return (
-    <div className="d-flex justify-content-center gap-2">
-      <Link to={"home"}>
-        <Button >home</Button>
+    <div className="d-flex justify-content-center gap-3">
+      <Link to={'home'} >
+        <Button variant="outline-primary">HOME</Button>
       </Link>
-      <Link to={"calculater"}>
-        <Button>Calculater</Button>
+      <Link to={'calculator'} >
+        <Button variant="outline-warning">CALCULATE</Button>
       </Link>
-      <Link to={"animation"}>
-        <Button>Animation</Button>
+      <Link to={'animation'} >
+        <Button variant="outline-danger">ANIMATION</Button>
       </Link>
-      <Link to={'components'}>
-      <Button>Components</Button>
+      <Link to={'components'} >
+        <Button variant="outline-light">COMPONENTS</Button>
       </Link>
     </div>
+
   );
-};
+}
 
 export default AppNavbar;

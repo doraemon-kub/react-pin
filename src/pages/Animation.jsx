@@ -1,7 +1,7 @@
 const Animation = () => {
   return (
     <>
-      <h2></h2>
+      <h2>Animation</h2>
     </>
   );
 };

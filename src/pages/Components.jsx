@@ -1,10 +1,10 @@
-
-
+import { useState } from "react";
 
 import Value from "../components/Value";
 import Temperature from "../components/Temperature";
 import Timer from "../components/Timer";
 import Adder from "../components/Adder";
+import RedixCounter from "../components/RedixCounter";
 
 
 
@@ -15,7 +15,7 @@ const Components = () => {
 
     return ( <>
         <h2>COMPONENTS PAGES</h2>
-            {/* <RedixCounter /> */}
+      <RedixCounter />
 
       <Value name={'COUNTER'} value={counter} setValue={setCounter} />
 

@@ -1,26 +1,34 @@
 // import RedixCounter from "./components/RedixCounter";
 
-import { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Components from "./pages/Components";
-import Calculater from "./pages/Calculater";
+import Home from "./pages/Home";
+import Animation from "./pages/Animation";
+import Calculator from "./pages/Calculator";
 import ForwardToHome from "./pages/ForwardToHome";
-import AppLayouts from "./layouts/AppLayout";
+import Applayout from "./layouts/AppLayout";
+
+
 
 function App() {
+
   return (
-    <div>
-      <BrowserRouter basename="/redix-counter/">
-        <Route>
-          <Route element={<AppLayouts/>}>
-            <Route path="components" element={<Components />} />
-            <Route path="animation" element={<Animation />} />
-            <Route path="calculater" element={<Calculater />} />
-            <Route path="*" element={<ForwardToHome />} />
-          </Route>
+
+    <BrowserRouter basename="/multipages">
+      <Routes >
+        <Route element={<Applayout/>}>
+          <Route path="components" element={<Components />} />
+          <Route path="home" element={<Home />} />
+          <Route path="animation" element={<Animation />} />
+          <Route path="calculator" element={<Calculator />} />
+          <Route path="*" element={<ForwardToHome />} />
+
         </Route>
-      </BrowserRouter>
-    </div>
+
+
+      </Routes>
+    </BrowserRouter>
+
   );
 }
 
