@@ -7,7 +7,7 @@ const RedixCounter = () => {
   return (
     // container
     <div
-      className="border border-3 border-black m-auto p-3 rounded-4"
+      className="border border-3 border-black m-auto p-3 rounded-4  bg-secondary-subtle"
       style={{ width: "fit-content" }}
     >
       {/* title */}
@@ -42,3 +42,6 @@ const RedixCounter = () => {
 };
 
 export default RedixCounter;
+
+
+                          

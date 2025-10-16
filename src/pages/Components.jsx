@@ -13,8 +13,8 @@ const Components = () => {
 
      const [counter, setCounter] = useState(0);
 
-    return ( <>
-        <h2>COMPONENTS PAGES</h2>
+    return ( <div className="bg-danger-subtle">
+        
       <RedixCounter />
 
       <Value name={'COUNTER'} value={counter} setValue={setCounter} />
@@ -28,9 +28,9 @@ const Components = () => {
       
 
 
-      <h1 className="text-center mt-3">67156801 นายณัฐวุฒิ สังข์ประเสริฐ</h1>
+      <h1 className="text-center mt-3 bg-danger-subtle">67156801 นายณัฐวุฒิ สังข์ประเสริฐ</h1>
 
-    </> );
+    </div> );
 }
  
 export default Components;

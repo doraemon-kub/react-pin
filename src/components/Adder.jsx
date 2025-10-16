@@ -7,11 +7,11 @@ const Adder = ({ name }) => {
 
     return (
         <div
-            className="border border-black border-2 rounded-4 mx-auto p-3 mt-3"
+            className="border border-black border-2 rounded-4 mx-auto p-3 mt-3   bg-secondary-subtle"
             style={{ width: "fit-content" }}
         >
             <h1 className="text-center text-primary">{name || "ADD"}</h1>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between bg">
                 <span className="badge bg-secondary fs-2">A={a}</span>
                 <span className="badge bg-primary fs-2">A+B={a + b}</span>
                 <span className="badge bg-secondary fs-2">B={b}</span>
