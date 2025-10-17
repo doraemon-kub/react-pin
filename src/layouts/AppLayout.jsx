@@ -7,13 +7,15 @@ import AppFooter from "../components/AppFooter";
 const Applayout = () => {
     return (
 
-        <>
-           <AppHeader/>
-           <AppNavbar/>
-           <Outlet/>
-           <AppFooter/>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <AppHeader />
+            <AppNavbar />
+            <main style={{ flex: '1' }}>
+                <Outlet />
+            </main>
+            <AppFooter />
 
-        </>
+        </div>
 
     );
 }

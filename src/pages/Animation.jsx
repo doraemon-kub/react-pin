@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import './Animation.css';
+
 
 const Animation = () => {
 
@@ -75,7 +75,7 @@ const Animation = () => {
 
   return (
     <div className=''>
-   
+
       <div
         className="border border-3 p-3 rounded-4 mx-auto"
         style={{ width: 'fit-content', fontFamily: 'sans-serif' }}
@@ -92,7 +92,7 @@ const Animation = () => {
               height: `${ballDiameter}px`,
               left: `${position.x}px`,
               top: `${position.y}px`,
-              backgroundImage: selectedBall !== 'none' ? `url('/images/${selectedBall}.png')` : 'none',
+              backgroundImage: selectedBall !== 'none' ? `url(${import.meta.env.BASE_URL}images/${selectedBall}.png)` : 'none',
               backgroundColor: selectedBall === 'none' ? 'lightgray' : 'transparent',
             }}
           ></div>
