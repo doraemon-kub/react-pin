@@ -17,6 +17,8 @@ const AppNavbar = () => {
       <Link to={'components'} >
         <Button variant="outline-info" className="fs-3 fw-bold p-3 m-3">COMPONENTS</Button>
       </Link>
+
+      
     </div>
 
   );

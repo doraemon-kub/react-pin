@@ -7,6 +7,7 @@ import Animation from "./pages/Animation";
 import Calculator from "./pages/Calculator";
 import ForwardToHome from "./pages/ForwardToHome";
 import Applayout from "./layouts/AppLayout";
+import Todos from "./pages/Todos";
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="home" element={<Home />} />
           <Route path="animation" element={<Animation />} />
           <Route path="calculator" element={<Calculator />} />
+          <Route path="todos" element={<Todos/>} />
           <Route path="*" element={<ForwardToHome />} />
 
         </Route>
