@@ -1,57 +1,105 @@
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 import { Form, Table, Badge, Button } from "react-bootstrap";
 import { fetchTodos } from "../data/todos";
+import Modal from 'react-bootstrap/Modal';
 
 const Todos = () => {
   // todosraw -> [filter] -> [paginate] -> todos
   const [todosRaw, setTodosRaw] = useState([]);
-  const [todos, setTodos] = useState([]); 
+  const [todos, setTodos] = useState([]);
   const [onlyWaiting, setOnlyWaiting] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const [curPage, setCurPage] = useState(1);
-  const [numPage, setNumPage] = useState(1); 
+  const [numPage, setNumPage] = useState(1);
 
-  
   useEffect(() => console.log("onlyWaiting: " + onlyWaiting), [onlyWaiting]);
   useEffect(() => console.log(`itemsPerPage: ${itemsPerPage}`), [itemsPerPage]);
 
-  
   useEffect(() => {
     setTodosRaw(fetchTodos());
   }, []);
 
-  
   useEffect(() => {
     // 1. Filter
     const filtered = onlyWaiting
       ? todosRaw.filter((todo) => !todo.completed)
       : todosRaw;
 
-    
-    const perPage = Number(itemsPerPage); 
+    const perPage = Number(itemsPerPage);
     const totalPages = Math.ceil(filtered.length / perPage);
-    setNumPage(totalPages > 0 ? totalPages : 1); 
+    setNumPage(totalPages > 0 ? totalPages : 1);
 
-    
     const startIndex = (curPage - 1) * perPage;
     const endIndex = startIndex + perPage;
-    
-    setTodos(filtered.slice(startIndex, endIndex));
 
+    setTodos(filtered.slice(startIndex, endIndex));
   }, [todosRaw, onlyWaiting, curPage, itemsPerPage]);
+
+  const waitingClicked = (id) => {
+    console.log(id);
+
+    const selectedTodo = todosRaw.find((todo) => {
+      return todo.id === id;
+    });
+
+    selectedTodo.completed = true;
+
+    setTodosRaw([...todosRaw]);
+  };
+
+  const deleteClicked = (id) => {
+    const remainTodos = todosRaw.filter((todo) => {
+      return todo.id !== id;
+    });
+
+    setTodosRaw(remainTodos);
+  };
 
   return (
     <>
+      {/* <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>ID</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>title</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
+
       {/* filter */}
       <div className="d-flex align-items-center justify-content-between mb-3 ">
-        <Form.Check 
+        <Form.Check
           type="switch"
           id="custom-switch"
-          label="Show only waiting" 
+          label="Show only waiting"
           onChange={(e) => {
             setOnlyWaiting(e.target.checked);
-            setCurPage(1); 
+            setCurPage(1);
           }}
         />
 
@@ -64,7 +112,6 @@ const Todos = () => {
             setCurPage(1); // รีเซ็ตหน้าเมื่อเปลี่ยน itemsPerPage
           }}
         >
-          
           <option value={5}>5 item per page</option>
           <option value={10}>10 item per page</option>
           <option value={50}>50 item per page</option>
@@ -99,7 +146,7 @@ const Todos = () => {
                       <Badge bg="success">
                         {" "}
                         done&nbsp;<i className="bi bi-check"></i>{" "}
-                      </Badge> 
+                      </Badge>
                     ) : (
                       <Badge bg="warning">
                         waiting&nbsp;<i className="bi bi-clock"></i>
@@ -129,21 +176,23 @@ const Todos = () => {
         >
           Previous
         </Button>
-        
+
         {/* แก้ไข: การแสดงผลเลขหน้า */}
-        <span className="fw-bold">{curPage}&nbsp;/&nbsp;{numPage}</span>
+        <span className="fw-bold">
+          {curPage}&nbsp;/&nbsp;{numPage}
+        </span>
 
         <Button
           variant="outline-primary"
-          onClick={() => curPage < numPage && setCurPage((p) => p + 1)} 
-          disabled={curPage >= numPage} 
+          onClick={() => curPage < numPage && setCurPage((p) => p + 1)}
+          disabled={curPage >= numPage}
         >
           Next
         </Button>
         <Button
           variant="outline-primary"
           onClick={() => setCurPage(numPage)}
-          disabled={curPage >= numPage} 
+          disabled={curPage >= numPage}
         >
           Last
         </Button>
