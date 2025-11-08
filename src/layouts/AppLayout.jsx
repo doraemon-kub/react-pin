@@ -4,14 +4,15 @@ import AppHeader from "../components/AppHeader";
 import AppNavbar from "../components/AppNavbar";
 import AppFooter from "../components/AppFooter";
 
-const Applayout = () => {
+const Applayout = ({ products, carts, setCartItems }) => {
+
     return (
 
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <AppHeader />
-            <AppNavbar />
+            <AppNavbar products={products} carts={carts}/>
             <main style={{ flex: '1' }}>
-                <Outlet />
+                <Outlet context={{ products, carts, setCartItems }} />
             </main>
             <AppFooter />
 

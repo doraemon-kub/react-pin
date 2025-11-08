@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // อย่าลืม import bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
-// Component สำหรับใส่สไตล์ CSS เพื่อให้เหมือนต้นฉบับ
+
 const CustomStyles = () => (
   <style>{`
     body {
