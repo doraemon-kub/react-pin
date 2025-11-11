@@ -14,9 +14,12 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 
 import { fetchProducts } from "./data/products";
+import Login from "./pages/Login";
 
 function App() {
 
+    const [token, setToken] = useState('');   
+    const [role, setRole] = useState('');
 
     const [products, setProducts] = useState([]);
     const [carts, setCartItems] = useState([]);
@@ -29,12 +32,17 @@ function App() {
         console.log("Products loaded:", products);
     }, [products]);
 
+    if (token === '') {
+        return <Login setToken={setToken} setRole={setRole}/>;
+    } else {
+            
+    }
 
     return (
 
         <BrowserRouter basename="/multipages">
             <Routes >
-                <Route element={<Applayout products={products} carts={carts} setCartItems={setCartItems}/>}>
+                <Route element={<Applayout products={products} carts={carts} setCartItems={setCartItems} setToken={setToken}/>}>
                     <Route path="components" element={<Components />} />
                     <Route path="home" element={<Home />} />
                     <Route path="animation" element={<Animation />} />
@@ -42,6 +50,7 @@ function App() {
                     <Route path="todos" element={<Todos />} />
                     <Route path="product" element={<Product products={products} carts={carts} setCartItems={setCartItems} />} />
                     <Route path="cart" element={<Cart carts={carts} setCartItems={setCartItems}/>} />
+                    <Route path="login" element={<Login />} />
                     <Route path="*" element={<ForwardToHome />} />
 
                 </Route>
@@ -51,6 +60,10 @@ function App() {
         </BrowserRouter>
 
     );
+
+
+
+
 }
 
 export default App;

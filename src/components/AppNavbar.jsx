@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
-const AppNavbar = ({ products, carts }) => {
+const AppNavbar = ({ products, carts, setToken }) => {
     return (
         <div className="d-flex justify-content-center gap-3 my-3 bg-dark">
             <Link to={'home'} >
@@ -36,6 +36,11 @@ const AppNavbar = ({ products, carts }) => {
 
                 </Button>
             </Link>
+
+              <Button variant="outline-danger" className="fs-3 fw-bold p-3 m-3 " 
+              onClick={() => setToken('')} >
+                Logout
+              </Button>
 
         </div>
 
