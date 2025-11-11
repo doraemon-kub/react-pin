@@ -1,56 +1,85 @@
-import React, { useRef } from "react"; 
-import { Form } from "react-bootstrap";
+import React, { useRef } from "react";
+// 1. Import Card และ Button มาใช้
+import { Form, Card, Button } from "react-bootstrap"; 
 import { verifyUser } from "../data/users";
 
 const Login = ({ setToken, setRole }) => {
     const userRef = useRef();
     const passRef = useRef();
 
+    // 2. ปรับ handleLogin ให้รับ event จาก Form
+    const handleLogin = (event) => {
+        // 3. ป้องกันหน้าเว็บโหลดใหม่ (Refresh)
+        event.preventDefault(); 
 
-    const handleLogin = () => {
-        const user = userRef.current.value.trim(); 
+        const user = userRef.current.value.trim();
         const pass = passRef.current.value.trim();
-        userRef.current.value = '';
-        passRef.current.value = '';
 
         const userInfo = verifyUser(user, pass);
 
         if (userInfo === null) {
-            alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"); 
+            alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
             userRef.current.focus();
         } else {
+            // ล้างค่าในช่อง input (ควรทำหลังจาก Login สำเร็จ)
+            userRef.current.value = '';
+            passRef.current.value = '';
+            
             setToken(userInfo.token);
             setRole(userInfo.role);
         }
     };
 
     return (
-        <div className="text-center">
-            <div className="text-center m-5 p-5 border border-2 rounded-3 shadow-lg d-inline-block">
-                <Form.Label htmlFor="username">Username</Form.Label>
-                <Form.Control
-                    type="text"
-                    id="username"
-                    placeholder="user"
-                    ref={userRef}
-                />
+        // 4. เปลี่ยนวิธีจัดกลาง
+        // ใช้ Flexbox จัดให้อยู่กลางจอทั้งแนวตั้ง-แนวนอน
+        // และเพิ่มสีพื้นหลังเทาอ่อนๆ ให้กับหน้า
+        <div 
+            className="d-flex justify-content-center align-items-center vh-100" 
+            style={{ backgroundColor: '#f8f9fa' }}
+        >
+            
+            {/* 5. ใช้ <Card> แทน <div> ธรรมดา */}
+            {/* ทำให้มีเงา (shadow) และขอบโค้ง (rounded) ที่สวยงามขึ้น */}
+            <Card style={{ width: '24rem' }} className="shadow-lg border-0 rounded-4">
+                <Card.Body className="p-4 p-md-5">
+                    
+                    {/* 6. เพิ่มหัวข้อ (Title) */}
+                    <h2 className="fw-bold text-center mb-4">Login</h2>
 
-                <Form.Label htmlFor="password">Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    id="password"
-                    placeholder="pass"
-                    ref={passRef}
-                />
+                    {/* 7. ใช้ <Form> หุ้ม และใช้ onSubmit */}
+                    <Form onSubmit={handleLogin}>
+                        
+                        {/* 8. ใช้ <Form.Group> เพื่อจัดกลุ่ม Label และ Input */}
+                        <Form.Group className="mb-3" controlId="username">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="user"
+                                ref={userRef}
+                                required // เพิ่มการตรวจสอบพื้นฐาน
+                            />
+                        </Form.Group>
 
-                
-                <button className="btn btn-success mt-3" onClick={handleLogin}>
-                    Login
-                </button>
-            </div>
+                        <Form.Group className="mb-4" controlId="password">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="pass"
+                                ref={passRef}
+                                required // เพิ่มการตรวจสอบพื้นฐาน
+                            />
+                        </Form.Group>
+
+                        {/* 9. ใช้ <Button> ของ React Bootstrap และทำให้เต็มความกว้าง */}
+                        <Button variant="primary" type="submit" className="w-100 fw-bold">
+                            Login
+                        </Button>
+                    </Form>
+                </Card.Body>
+            </Card>
         </div>
     );
 }
 
-// 4. ลบบรรทัดที่เป็นคอมเมนต์อยู่นอก Component ออก
 export default Login;
