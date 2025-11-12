@@ -40,7 +40,7 @@ function App() {
 
     return (
 
-        <BrowserRouter basename="/CSI205">
+        <BrowserRouter basename="/csi205">
             <Routes >
                 <Route element={<Applayout products={products} carts={carts} setCartItems={setCartItems} setToken={setToken}/>}>
                     <Route path="components" element={<Components />} />
