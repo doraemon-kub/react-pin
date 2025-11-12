@@ -18,7 +18,7 @@ import Login from "./pages/Login";
 
 function App() {
 
-    const [token, setToken] = useState('x');   
+    const [token, setToken] = useState('');   
     const [role, setRole] = useState('');
 
     const [products, setProducts] = useState([]);
