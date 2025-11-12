@@ -18,7 +18,7 @@ import Login from "./pages/Login";
 
 function App() {
 
-    const [token, setToken] = useState('');   
+    const [token, setToken] = useState('x');   
     const [role, setRole] = useState('');
 
     const [products, setProducts] = useState([]);
@@ -40,7 +40,7 @@ function App() {
 
     return (
 
-        <BrowserRouter basename="/multipages">
+        <BrowserRouter basename="/CSI205">
             <Routes >
                 <Route element={<Applayout products={products} carts={carts} setCartItems={setCartItems} setToken={setToken}/>}>
                     <Route path="components" element={<Components />} />
